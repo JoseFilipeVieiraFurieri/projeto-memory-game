@@ -1,0 +1,121 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(
+        325deg,
+        #03001e 0%,
+        #7303c0 30%,
+        #ec38bc 70%,
+        #fdeff9 100%
+    );
+
+    padding: 40px 60px;
+}
+
+h2 {
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.reset {
+    padding: 15px 20px;
+    width: 100%;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+
+}
+
+.reset:focus {
+    color:#ec38bc;
+    background-color: #262809 ;
+}
+
+.game {
+    display: flex;
+    width: 430px;
+    height: 430px;
+    flex-wrap:wrap;
+    gap:10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    font-size: 3em;
+    
+    transform: rotateY(180deg);
+    transition: 0.25s;
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+}
+
+.item::after {
+    content:"";
+    position: absolute;
+    inset: 0;
+    background: #404040;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+}
+
+
+.item.boxOpen {
+    transform: rotateY(0deg);
+}
+
+
+.boxOpen::after, .boxMatch::after {
+    transform: rotateY(180deg);
+    opacity: 0;
+}
+
+/* O deg se refere ao graus da posição inicial por qual o gradiente começa( ele vai girando de acordo com o numero) --> 
+O gradiente começa no preto e a cerca de 30 por cento vai mudando de cor
+
+existe uma ferramenta chama css gradiente generator, da pra ver la antes de colocar na pagina
+
+em -> calcula com base na font-size do pai
+rem -> calcula com base na font-padrão do user
+
+:focus -> adiciona um efeito quando clica( no hover e so passar em cima)
+
+flex-wrap: wrap -> quebrar a linha quando chega na margem do conteiner
+
+transforme style -> aplica o efeito 3d
+perpective -> alguma coisa a ver com animação das cartas
+
+. item -> se refere aos cards
+
+.::after -> pseudo seletor que tem o intuito de cobrir as cartas 
+
+o inset deixa o sobreposto o que o pseudoseletor faz e criar uma div vazia com backgorund preto encima dos cards
+
+backface-visibility: hidden; -> pelo que entendi e pra esconder o card atras do background que foi sobreposto
+
+o rotate não esta funcionando direito(so funciona quando eu desligo e ligo no navegador o tempo (transition de 0.25 não vai nem a pau)
+*/
+
+/* A borda esta pegando o espaco do border box(border box conta de borda a borda, cada elemento estava 100px so que a borda consumia 1px então ele ativava o wrap(flex wrap)
+/* o elemento era 100px e o pelo border-box ele conta de borda a borda so que parte da borda era consumida pela margem então ela acabava fazendo a quebra e desalinhando os elementos
